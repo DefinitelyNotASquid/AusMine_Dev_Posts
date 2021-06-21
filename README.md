@@ -1,4 +1,5 @@
-# How to load 60,000 32x32 pngs in just 3 seconds... - By Mithrillia
+# How to load 60,000 32x32 pngs in just 3 seconds... 
+###### Post by Mithrillia
 
 So everyone has by now seen AusMine's Custom icons in some form or another, But do you know why we use these characters?  Why do we use the chinese and japanese languages? What the bloody hell is a unicode and why does it matter to me?
 
