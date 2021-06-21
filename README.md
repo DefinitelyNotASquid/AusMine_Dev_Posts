@@ -1,9 +1,4 @@
-##### 
-
-
-
-
-Developer Posts!
+##### Developer Posts!
 
 ### How to load 60,000 32x32 pngs in just 3 seconds...
 
