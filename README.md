@@ -113,7 +113,7 @@ Turns out, if you specify a char array of an image, it will split the image into
 
 So after doing so perf tests, i figured out the best ratio of chars to sprite sheets seems to be at least for our testing to be 256 char's per sprite sheet. I was able to get the loading down to 3 seconds for 64k icons which means we can easily expand over the 10k we currently roll with. So we get this insanly skinny but tall png (8192px tall and 32px wide.) and our Json looks something like this:
 
-```
+```json
 {
 	"providers": [
 		{
