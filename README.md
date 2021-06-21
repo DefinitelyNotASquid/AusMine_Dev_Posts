@@ -12,7 +12,7 @@ In previous minecraft iterations, we were limited to the ranges of 00 - FF howev
 
 So in order to bypass this without insane configuration and have a large unicode index set we chose the Japanese and Chinese index's to overwrite. These both were a great choice as they both attribute the folowing:
 
-**A) **Mono spaced index's (monospace means every character is as wide and as tall as every other character)
+**A)** Mono spaced index's (monospace means every character is as wide and as tall as every other character)
 
 **and**
 
@@ -20,7 +20,7 @@ So in order to bypass this without insane configuration and have a large unicode
 
 This for the most part has been benificial for Ausmine, however we've been limited to just 16x16px images meaning that alot of our plans to expand on this functionality had been curbed.
 
-### New Functionality!
+#### New Functionality!
 
 In 1.16 Mojang released the ability to override greater sections of the unicode range, also we were given both the ability to resize individual unicode so, as I do i start to play around with the new formatting and play around with TTF integration. 
 
