@@ -1,14 +1,19 @@
-##### Ausmine Developer Posts!
+##### 
+
+
+
+
+Developer Posts!
 
 ### How to load 60,000 32x32 pngs in just 3 seconds...
 
-So everyone has by now seen Ausmines Custom icons in some form or another, But do you know why we use these characters?  Why do we use the chinese and japanese languages? What the bloody hell is a unicode and why does it matter to me?
+So everyone has by now seen AusMine's Custom icons in some form or another, But do you know why we use these characters?  Why do we use the chinese and japanese languages? What the bloody hell is a unicode and why does it matter to me?
 
 Well lets start with unicode. In the early days of computers, computer communication we just driven by the ASCII character index, however as computers started to expand globally we realised this system was not going to be accessible for everyone in the world. ASCII only supports A-Z, a-z, 0-9, a few special characters like .,<>?{}() ect and thats about it.
 
 So along comes Unicode, which is a standard that assigns a number to a letter or symbol so that we can all universally understand what someone is typing away on a keyboard, whether that be an English Qwerty keyboard, a french keyboard, a russian cyrillic keyboard or a chinese cantonese keyboard. Unicode code points can be written a few ways, you might have seen them represented in hexadecimal or alt codes before, they look like this : 	0x73, however basically all they are doing again are representing a number or in this case a "codepoint" in which case when converted back to just base ten (decimal) you get 115.
 
-Okay so how does this relate to ausmine's custom icons and emojis?!??! Well in order to have coloured images what we do is overwrite certain sections of the unicode index in order to represent text in a particular way. 
+Okay so how does this relate to AusMine's custom icons and emojis?!??! Well in order to have coloured images what we do is overwrite certain sections of the unicode index in order to represent text in a particular way. 
 
 In previous minecraft iterations, we were limited to the ranges of 00 - FF however these unicode pages were only able to support 16px x 16px characters and then the glyphs would only render at 16x16 (if not smaller) depending on the range's set dimensions in the glyphs.bin file.
 
@@ -20,7 +25,7 @@ So in order to bypass this without insane configuration and have a large unicode
 
 **B)** Contain large amounts of characters as they are pictographic in nature (Meaning instead of using just a standard set of letters to make up their words, they use thousands of symbols that correspond to actual words, think sorta heiroglyphics).
 
-This for the most part has been benificial for Ausmine, however we've been limited to just 16x16px images meaning that alot of our plans to expand on this functionality had been curbed.
+This for the most part has been benificial for AusMine, however we've been limited to just 16x16px images meaning that alot of our plans to expand on this functionality had been curbed.
 
 #### New Functionality!
 
