@@ -1,6 +1,4 @@
-##### Developer Posts!
-
-### How to load 60,000 32x32 pngs in just 3 seconds...
+# How to load 60,000 32x32 pngs in just 3 seconds... - By Mithrillia
 
 So everyone has by now seen AusMine's Custom icons in some form or another, But do you know why we use these characters?  Why do we use the chinese and japanese languages? What the bloody hell is a unicode and why does it matter to me?
 
@@ -63,10 +61,10 @@ Here is the following logs of trying to load the unicode pack with all of our ic
 
 That took over 1min 30s on a 8 Core cpu, 16gb of ram minecraft instance with the resource pack hosted locally to load. This would cripple most potatoe's trying to join the server and use the inbuilt resource pack, and we would like a seamless process downloading and loading the resource pack.
 
-##### So what went wrong?  
+### So what went wrong?  
 Well it turns out, nothing! it works exactly as specified and if we drop the icons down to about 3,000 it loads way way faster, actually only takes 6 seconds so whats slowing it down? Whats going on here, why adding an extra 7000 slows it down 15x when realistically it should only be about 10-15 seconds?
 
-##### So a little bit of math theory:
+### Little bit of math theory:
 
 In the following diagram we have some Exponential and linear curves, you dont really need to understand much about the graph but what you want to know is all those crazy ones that shoot right up to the sky after a little while are really bad performing algorithms. Given enough data, they can take 1000's of more resources or time to complete the last operation as they did the first.
 
@@ -75,7 +73,7 @@ Essentially, the more you throw at it, the worse it progressively gets, until at
 The straight line and everything below it are examples of algorithmns that are really good at doing things no matter how much data or resources you have, you basically throw what ever at it and it either just doesnt get any worse, stays the same, or grows at a steady rate the more there is.
 [![BIG O](https://res.cloudinary.com/practicaldev/image/fetch/s--NR3M1nw8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/z4bbf8o1ly77wmkjdgge.png "BIG O")](https://res.cloudinary.com/practicaldev/image/fetch/s--NR3M1nw8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/z4bbf8o1ly77wmkjdgge.png "BIG O")
 
-##### So who's to blame? Me or Mojang?
+### Who's to blame? Me or Mojang?
 
 Weeeeeeeeeell to be honest - its the both of us. The new format that they use is Json, its basically a nice way to define an Object and all of its properties and then specifiy particular differences between each object. its super common, no like seriously you'd be sending 500+ json requests per day just browsing and clicking through apps on your phone.
 
@@ -105,7 +103,7 @@ So if we look back at the example i showed before of the json, we can see there 
 }
 ```
 
-Well thats not actually the case - see what it would actually do is break up stonks.png into three equal widths and a, b and c would actually be represented by this. I played around with this for a while, because even on the Minecraft wiki there is basically no information and i'd never actually seen this at all before.
+Well thats not actually the case - see what it would actually do is break up stonks.png into three equal widths and a, b and c would actually be represented by this. I played around with this for a while and took a peak under the hood to see what mojang was doing here, because even on the Minecraft wiki there is basically no information and i'd never actually seen any of this functionality at all before.
 
 Turns out, if you specify a char array of an image, it will split the image into that many characters tall, basically like a sprite sheet. This meant two things:
 
