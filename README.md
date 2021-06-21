@@ -2,13 +2,13 @@
 
 So everyone has by now seen AusMine's Custom icons in some form or another, But do you know why we use these characters?  Why do we use the chinese and japanese languages? What the bloody hell is a unicode and why does it matter to me?
 
-Well lets start with unicode. In the early days of computers, computer communication we just driven by the ASCII character index, however as computers started to expand globally we realised this system was not going to be accessible for everyone in the world. ASCII only supports A-Z, a-z, 0-9, a few special characters like .,<>?{}() ect and thats about it.
+Well lets start with unicode. In the early days of computers, computer communication was just driven by the ASCII character index, however as computers started to expand globally we realised this system was not going to be accessible for everyone in the world. The ASCII Table only supports A-Z, a-z, 0-9, a few special characters like .,<>?{}() ect. Unfortunantely it wasnt really designed with expandability and accessibility at its core.
 
-So along comes Unicode, which is a standard that assigns a number to a letter or symbol so that we can all universally understand what someone is typing away on a keyboard, whether that be an English Qwerty keyboard, a french keyboard, a russian cyrillic keyboard or a chinese cantonese keyboard. Unicode code points can be written a few ways, you might have seen them represented in hexadecimal or alt codes before, they look like this : 	0x73, however basically all they are doing again are representing a number or in this case a "codepoint" in which case when converted back to just base ten (decimal) you get 115.
+So then in the early 90's along comes Unicode, which is a universal standard that assigns a give "number" to a letter or symbol; This enables us to universally understand what someone is typing away on a keyboard, whether that be an English Qwerty keyboard, a French keyboard, a russian cyrillic keyboard or a chinese cantonese keyboard. Unicode code points can be written a few ways, you might have seen them represented in hexadecimal or alt codes before, they look like this : 0x73. Basically that the computer is doing is again representing a number or in this case a "Code Point" which when converted back to base ten (decimal) is just a number (115).
 
-Okay so how does this relate to AusMine's custom icons and emojis?!??! Well in order to have coloured images what we do is overwrite certain sections of the unicode index in order to represent text in a particular way. 
+Okay so how does this relate to AusMine's custom icons and emojis?!??! Well in order to have coloured images what we do is overwrite certain sections of the unicode index in order to represent text in a particular way. Emoji's already natively live in the Unicode index, so we just assign those to the places where minecraft hasn't already done so, but for other custom ones, we assign those to "private regions" areas that have been specifically reserved so that developers can use them as they please.
 
-In previous minecraft iterations, we were limited to the ranges of 00 - FF however these unicode pages were only able to support 16px x 16px characters and then the glyphs would only render at 16x16 (if not smaller) depending on the range's set dimensions in the glyphs.bin file.
+In previous minecraft iterations, we were limited to the ranges of 00 - FF however these unicode pages were only able to support 16 x 16px characters and then the glyphs would only render at 16x16px (if not smaller) depending on the range's set dimensions in the glyphs.bin file.
 
 So in order to bypass this without insane configuration and have a large unicode index set we chose the Japanese and Chinese index's to overwrite. These both were a great choice as they both attribute the folowing:
 
@@ -59,7 +59,7 @@ Here is the following logs of trying to load the unicode pack with all of our ic
 12:10:14.524 Render thread Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
 ```
 
-That took over 1min 30s on a 8 Core cpu, 16gb of ram minecraft instance with the resource pack hosted locally to load. This would cripple most potatoe's trying to join the server and use the inbuilt resource pack, and we would like a seamless process downloading and loading the resource pack.
+That took over 1min 30s on a 8xCore CPU, 16gb of ram, minecraft instance with the resource pack hosted locally to load. This would cripple most potatoes trying to join the server trying to use the server designated resource pack, and preferably we would like to have a seamless process of downloading and loading the resource pack for all players.
 
 ### So what went wrong?  
 Well it turns out, nothing! it works exactly as specified and if we drop the icons down to about 3,000 it loads way way faster, actually only takes 6 seconds so whats slowing it down? Whats going on here, why adding an extra 7000 slows it down 15x when realistically it should only be about 10-15 seconds?
@@ -108,6 +108,7 @@ Well thats not actually the case - see what it would actually do is break up sto
 Turns out, if you specify a char array of an image, it will split the image into that many characters tall, basically like a sprite sheet. This meant two things:
 
 1) we can reduce our IO Operations down quite a lot.
+
 2) we can reduce our overall object amount down as a significant factor as well as we're going to be storing multiple Unicodes per object prop.
 
 So after doing so perf tests, i figured out the best ratio of chars to sprite sheets seems to be at least for our testing to be 256 char's per sprite sheet. I was able to get the loading down to 3 seconds for 64k icons which means we can easily expand over the 10k we currently roll with. So we get this insanly skinny but tall png (8192px tall and 32px wide.) and our Json looks something like this:
